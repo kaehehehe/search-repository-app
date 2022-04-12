@@ -10,7 +10,11 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 62.5%;
+    background-color: #22272D;
   }
 
   ul {

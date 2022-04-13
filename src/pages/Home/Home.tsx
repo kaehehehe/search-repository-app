@@ -9,6 +9,9 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 export type RepoType = {
   id: number;
   fullName: string;
+  open_issues: number;
+  description: string;
+  updated_at: string;
 };
 
 const Home = () => {
@@ -17,12 +20,12 @@ const Home = () => {
   return (
     <S.Home>
       <SearchBar setRepo={setRepo} />
-      <SaveRepo savedRepos={savedRepos} setSavedRepos={setSavedRepos} />
-      <RepoList
-        data={repo}
-        savedRepos={savedRepos}
-        setSavedRepos={setSavedRepos}
-      />
+        <SaveRepo savedRepos={savedRepos} setSavedRepos={setSavedRepos} />
+        <RepoList
+          data={repo}
+          savedRepos={savedRepos}
+          setSavedRepos={setSavedRepos}
+        />
     </S.Home>
   );
 };

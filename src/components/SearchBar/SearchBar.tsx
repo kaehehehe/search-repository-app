@@ -28,8 +28,14 @@ const SearchBar = ({ setRepo }: SearchBarProps) => {
           .then((res) => {
             const data = res.data.items;
             // @ts-ignore
-            const result = data.map((item) => {
-              return { id: item.id, fullName: item.full_name };
+            const result = data.map((repo) => {
+              return {
+                id: repo.id,
+                fullName: repo.full_name,
+                open_issues: repo.open_issues,
+                description: repo.description,
+                updated_at: repo.updated_at,
+              };
             });
             setRepo(result);
             setPage(page + 1);

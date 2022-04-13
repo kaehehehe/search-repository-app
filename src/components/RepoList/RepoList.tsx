@@ -2,6 +2,7 @@ import React from 'react';
 
 import * as S from './style';
 import { RepoType } from '../../pages/Home/Home';
+import { formatDate } from '../../utils/formatDate';
 
 type RepoListProps = {
   data: RepoType[];
@@ -33,9 +34,12 @@ const RepoList = ({ data, savedRepos, setSavedRepos }: RepoListProps) => {
       {data.length === 0 ? (
         <S.Message>검색 결과가 없습니다.</S.Message>
       ) : (
-        data.map((item) => (
-          <S.ListItem key={item.id} onClick={() => handleSaveRepo(item)}>
-            {item.fullName}
+        data.map((repo) => (
+          <S.ListItem key={repo.id} onClick={() => handleSaveRepo(repo)}>
+            <S.Title>{repo.fullName}</S.Title>
+            <S.Description>{repo.description}</S.Description>
+            <S.IssuesCount>issue 개수 : {repo.open_issues}</S.IssuesCount>
+            <S.UpdatedAt>마지막에 업데이트된 날짜 : {formatDate(repo.updated_at)}</S.UpdatedAt>
           </S.ListItem>
         ))
       )}

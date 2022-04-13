@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './style';
 import { RepoType } from '../../pages/Home/Home';
@@ -8,6 +9,8 @@ type SaveRepoProps = {
   setSavedRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
 };
 const SaveRepo = ({ savedRepos, setSavedRepos }: SaveRepoProps) => {
+  const navigate = useNavigate();
+
   const handleDeleteBtn = (id: number) => {
     const result = savedRepos.filter((repo) => repo.id !== id);
     setSavedRepos(result);
@@ -22,7 +25,9 @@ const SaveRepo = ({ savedRepos, setSavedRepos }: SaveRepoProps) => {
           savedRepos.map(({ id, fullName }) => (
             <S.ListItem key={id}>
               <S.Wrapper>
-                <S.RepoName>{fullName}</S.RepoName>
+                <S.RepoName onClick={() => navigate(`/issue/${fullName}`)}>
+                  {fullName}
+                </S.RepoName>
                 <S.DeleteIcon
                   onClick={() => handleDeleteBtn(id)}
                   xmlns="http://www.w3.org/2000/svg"

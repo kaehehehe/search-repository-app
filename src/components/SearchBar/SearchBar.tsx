@@ -5,10 +5,10 @@ import * as S from './style';
 import { RepoType } from '../../pages/Home/Home';
 
 type SearchBarProps = {
-  setRepo: React.Dispatch<React.SetStateAction<RepoType[]>>;
+  setRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
 };
 
-const SearchBar = ({ setRepo }: SearchBarProps) => {
+const SearchBar = ({ setRepos }: SearchBarProps) => {
   const [page, setPage] = useState(1);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -37,7 +37,7 @@ const SearchBar = ({ setRepo }: SearchBarProps) => {
                 updated_at: repo.updated_at,
               };
             });
-            setRepo(result);
+            setRepos(result);
             setPage(page + 1);
           })
           .catch((res) => console.error(res));

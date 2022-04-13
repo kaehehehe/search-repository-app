@@ -15,14 +15,14 @@ export type RepoType = {
 };
 
 const Home = () => {
-  const [repo, setRepo] = useState<RepoType[]>([]);
+  const [repos, setRepos] = useState<RepoType[]>([]);
   const [savedRepos, setSavedRepos] = useLocalStorage('savedRepos', []);
   return (
     <S.Home>
-      <SearchBar setRepo={setRepo} />
+      <SearchBar setRepos={setRepos} />
         <SaveRepo savedRepos={savedRepos} setSavedRepos={setSavedRepos} />
         <RepoList
-          data={repo}
+          repos={repos}
           savedRepos={savedRepos}
           setSavedRepos={setSavedRepos}
         />

@@ -5,12 +5,12 @@ import { RepoType } from '../../pages/Home/Home';
 import { formatDate } from '../../utils/formatDate';
 
 type RepoListProps = {
-  data: RepoType[];
+  repos: RepoType[];
   savedRepos: RepoType[];
   setSavedRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
 };
 
-const RepoList = ({ data, savedRepos, setSavedRepos }: RepoListProps) => {
+const RepoList = ({ repos, savedRepos, setSavedRepos }: RepoListProps) => {
   const existsRepo = (targetRepo: RepoType) => {
     return savedRepos.find((repo) => repo.id === targetRepo.id);
   };
@@ -31,10 +31,10 @@ const RepoList = ({ data, savedRepos, setSavedRepos }: RepoListProps) => {
   };
   return (
     <S.RepoList>
-      {data.length === 0 ? (
+      {repos.length === 0 ? (
         <S.Message>검색 결과가 없습니다.</S.Message>
       ) : (
-        data.map((repo) => (
+        repos.map((repo) => (
           <S.ListItem key={repo.id} onClick={() => handleSaveRepo(repo)}>
             <S.Title>{repo.fullName}</S.Title>
             <S.Description>{repo.description}</S.Description>

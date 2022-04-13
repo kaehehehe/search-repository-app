@@ -17,7 +17,6 @@ export const ListItem = styled.li`
   font-size: 1.8rem;
   padding: 20px 0;
   transition: all 300ms linear;
-
   border-bottom: 1px solid #363e47;
   cursor: pointer;
 

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const SaveRepo = styled.div`
   max-width: 1100px;
-  height: 100px;
   border-radius: 3px;
 
   h3 {
@@ -10,13 +9,13 @@ export const SaveRepo = styled.div`
     font-weight: normal;
     text-align: center;
     color: #acbac7;
+    margin-bottom: 15px;
   }
 `;
 
 export const List = styled.ul`
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
 `;
 
@@ -37,6 +36,7 @@ export const Wrapper = styled.div`
 export const RepoName = styled.h4`
   font-size: 1.8rem;
   margin-right: 20px;
+  cursor: pointer;
 `;
 
 export const DeleteIcon = styled.svg`

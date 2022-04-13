@@ -22,11 +22,11 @@ const SaveRepo = ({ savedRepos, setSavedRepos }: SaveRepoProps) => {
         {savedRepos.length === 0 ? (
           <li>저장된 리포지토리가 없습니다</li>
         ) : (
-          savedRepos.map(({ id, fullName }) => (
+          savedRepos.map(({ id, full_name }) => (
             <S.ListItem key={id}>
               <S.Wrapper>
-                <S.RepoName onClick={() => navigate(`/issue/${fullName}`)}>
-                  {fullName}
+                <S.RepoName onClick={() => navigate(`/issue/${full_name}`)}>
+                  {full_name}
                 </S.RepoName>
                 <S.DeleteIcon
                   onClick={() => handleDeleteBtn(id)}

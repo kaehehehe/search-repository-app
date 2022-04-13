@@ -27,11 +27,10 @@ const SearchBar = ({ setRepos }: SearchBarProps) => {
         fetchRepo(keyword)
           .then((res) => {
             const data = res.data.items;
-            // @ts-ignore
-            const result = data.map((repo) => {
+            const result = data.map((repo: RepoType) => {
               return {
                 id: repo.id,
-                fullName: repo.full_name,
+                full_name: repo.full_name,
                 open_issues: repo.open_issues,
                 description: repo.description,
                 updated_at: repo.updated_at,

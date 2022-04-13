@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <S.Home>
       <SearchBar setRepo={setRepo} />
-      <SaveRepo savedRepos={savedRepos} />
+      <SaveRepo savedRepos={savedRepos} setSavedRepos={setSavedRepos} />
       <RepoList
         data={repo}
         savedRepos={savedRepos}

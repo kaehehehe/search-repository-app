@@ -16,7 +16,7 @@ export const NoIssue = styled.div`
 export const IssueCard = styled.a`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 400px;
   margin: 10px;
   border: 1px solid #363e47;
@@ -32,7 +32,8 @@ export const IssueCard = styled.a`
 
 export const CardTitleAndRepoName = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: start;
   margin-bottom: 8px;
 
   h3 {
@@ -44,6 +45,7 @@ export const CardTitleAndRepoName = styled.div`
     color: #acbac7;
     font-size: 1.6rem;
     margin-bottom: 8px;
+    text-align: end;
   }
 `;
 

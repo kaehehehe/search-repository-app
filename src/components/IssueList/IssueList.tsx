@@ -19,8 +19,8 @@ const IssueList = ({ issues, repoName }: IssueListProps) => {
           ({ id, title, updated_at, html_url, author, author_avatar }) => (
             <S.IssueCard key={id} href={html_url} target="_blank">
               <S.CardTitleAndRepoName>
-                <h3>{title}</h3>
                 <span>{repoName}</span>
+                <h3>{title}</h3>
               </S.CardTitleAndRepoName>
               <S.AuthorData>
                 <img src={author_avatar} alt="이슈를 만든 사람의 사진" />

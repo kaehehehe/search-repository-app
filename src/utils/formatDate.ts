@@ -1,11 +1,17 @@
 export const formatDate = (date: string) => {
   const DATE = new Date(date);
-  const year = DATE.getFullYear();
-  const month = DATE.getMonth() + 1;
-  const day = DATE.getDate();
-  const hours = DATE.getHours();
-  const minutes = DATE.getMinutes();
-  const seconds = DATE.getSeconds();
+  const YEAR = DATE.getFullYear();
+  const MONTH = DATE.getMonth();
+  const DAY = DATE.getDate();
+  const HOURS = DATE.getHours();
+  const MINUTES = DATE.getMinutes();
+  const SECONDS = DATE.getSeconds();
 
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  const month = MONTH + 1 < 10 ? `0${MONTH}` : MONTH;
+  const day = DAY < 10 ? `0${DAY}` : DAY;
+  const hours = HOURS < 10 ? `0${HOURS}` : HOURS;
+  const minutes = MINUTES < 10 ? `0${MINUTES}` : MINUTES;
+  const seconds = SECONDS < 10 ? `0${SECONDS}` : SECONDS;
+
+  return `${YEAR}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 };

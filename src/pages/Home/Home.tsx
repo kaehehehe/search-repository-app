@@ -20,10 +20,15 @@ const Home = () => {
   const [savedRepos, setSavedRepos] = useLocalStorage('savedRepos', []);
   const [isLoading, setIsLoading] = useState(false);
   const [searched, setSearched] = useState(false);
+  const [page, setPage] = useState(1);
+  const [keyword, setKeyword] = useState('');
 
   return (
     <S.Home>
       <SearchBar
+        setKeyword={setKeyword}
+        page={page}
+        setPage={setPage}
         setRepos={setRepos}
         setIsLoading={setIsLoading}
         setSearched={setSearched}
@@ -33,7 +38,11 @@ const Home = () => {
         <Loading />
       ) : (
         <RepoList
+          keyword={keyword}
+          page={page}
+          setPage={setPage}
           repos={repos}
+          setRepos={setRepos}
           savedRepos={savedRepos}
           setSavedRepos={setSavedRepos}
           searched={searched}

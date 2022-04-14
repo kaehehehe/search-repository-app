@@ -5,13 +5,22 @@ import * as S from './style';
 import { RepoType } from '../../pages/Home/Home';
 
 type SearchBarProps = {
+  setKeyword: React.Dispatch<React.SetStateAction<string>>;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   setRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setSearched: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SearchBar = ({ setRepos, setIsLoading, setSearched }: SearchBarProps) => {
-  const [page, setPage] = useState(1);
+const SearchBar = ({
+  setKeyword,
+  page,
+  setPage,
+  setRepos,
+  setIsLoading,
+  setSearched,
+}: SearchBarProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const fetchRepo = async (keyword: string) => {
@@ -27,6 +36,7 @@ const SearchBar = ({ setRepos, setIsLoading, setSearched }: SearchBarProps) => {
         return;
       } else {
         setIsLoading(true);
+        setKeyword(keyword);
         fetchRepo(keyword)
           .then((res) => {
             const data = res.data.items;

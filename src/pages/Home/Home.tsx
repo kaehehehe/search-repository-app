@@ -5,6 +5,7 @@ import SearchBar from '../../components/SearchBar';
 import SaveRepo from '../../components/SaveRepo';
 import RepoList from '../../components/RepoList';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import Loading from '../../components/Loading';
 
 export type RepoType = {
   id: number;
@@ -17,15 +18,20 @@ export type RepoType = {
 const Home = () => {
   const [repos, setRepos] = useState<RepoType[]>([]);
   const [savedRepos, setSavedRepos] = useLocalStorage('savedRepos', []);
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <S.Home>
-      <SearchBar setRepos={setRepos} />
+      <SearchBar setRepos={setRepos} setIsLoading={setIsLoading} />
       <SaveRepo savedRepos={savedRepos} setSavedRepos={setSavedRepos} />
-      <RepoList
-        repos={repos}
-        savedRepos={savedRepos}
-        setSavedRepos={setSavedRepos}
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <RepoList
+          repos={repos}
+          savedRepos={savedRepos}
+          setSavedRepos={setSavedRepos}
+        />
+      )}
     </S.Home>
   );
 };

@@ -6,9 +6,10 @@ import { RepoType } from '../../pages/Home/Home';
 
 type SearchBarProps = {
   setRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SearchBar = ({ setRepos }: SearchBarProps) => {
+const SearchBar = ({ setRepos, setIsLoading }: SearchBarProps) => {
   const [page, setPage] = useState(1);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -24,6 +25,7 @@ const SearchBar = ({ setRepos }: SearchBarProps) => {
       if (keyword.trim() === '') {
         return;
       } else {
+        setIsLoading(true);
         fetchRepo(keyword)
           .then((res) => {
             const data = res.data.items;
@@ -36,6 +38,7 @@ const SearchBar = ({ setRepos }: SearchBarProps) => {
                 updated_at: repo.updated_at,
               };
             });
+            setIsLoading(false);
             setRepos(result);
             setPage(page + 1);
           })

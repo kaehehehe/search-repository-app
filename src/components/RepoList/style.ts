@@ -10,6 +10,7 @@ export const RepoList = styled.ul`
 export const Message = styled.li`
   font-size: 1.8rem;
   color: #acbac7;
+  margin-top: 50px;
 `;
 
 export const ListItem = styled.li`

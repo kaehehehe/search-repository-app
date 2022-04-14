@@ -19,9 +19,15 @@ const Home = () => {
   const [repos, setRepos] = useState<RepoType[]>([]);
   const [savedRepos, setSavedRepos] = useLocalStorage('savedRepos', []);
   const [isLoading, setIsLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
+
   return (
     <S.Home>
-      <SearchBar setRepos={setRepos} setIsLoading={setIsLoading} />
+      <SearchBar
+        setRepos={setRepos}
+        setIsLoading={setIsLoading}
+        setSearched={setSearched}
+      />
       <SaveRepo savedRepos={savedRepos} setSavedRepos={setSavedRepos} />
       {isLoading ? (
         <Loading />
@@ -30,6 +36,7 @@ const Home = () => {
           repos={repos}
           savedRepos={savedRepos}
           setSavedRepos={setSavedRepos}
+          searched={searched}
         />
       )}
     </S.Home>

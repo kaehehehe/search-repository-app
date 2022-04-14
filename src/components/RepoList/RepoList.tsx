@@ -8,9 +8,15 @@ type RepoListProps = {
   repos: RepoType[];
   savedRepos: RepoType[];
   setSavedRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
+  searched: boolean;
 };
 
-const RepoList = ({ repos, savedRepos, setSavedRepos }: RepoListProps) => {
+const RepoList = ({
+  repos,
+  savedRepos,
+  setSavedRepos,
+  searched,
+}: RepoListProps) => {
   const existsRepo = (targetRepo: RepoType) => {
     return savedRepos.find((repo) => repo.id === targetRepo.id);
   };
@@ -31,7 +37,7 @@ const RepoList = ({ repos, savedRepos, setSavedRepos }: RepoListProps) => {
   };
   return (
     <S.RepoList>
-      {repos.length === 0 ? (
+      {searched && repos.length === 0 ? (
         <S.Message>검색 결과가 없습니다.</S.Message>
       ) : (
         repos.map((repo) => (
@@ -39,7 +45,9 @@ const RepoList = ({ repos, savedRepos, setSavedRepos }: RepoListProps) => {
             <S.Title>{repo.full_name}</S.Title>
             <S.Description>{repo.description}</S.Description>
             <S.IssuesCount>issue 개수 : {repo.open_issues}</S.IssuesCount>
-            <S.UpdatedAt>마지막에 업데이트된 날짜 : {formatDate(repo.updated_at)}</S.UpdatedAt>
+            <S.UpdatedAt>
+              마지막에 업데이트된 날짜 : {formatDate(repo.updated_at)}
+            </S.UpdatedAt>
           </S.ListItem>
         ))
       )}

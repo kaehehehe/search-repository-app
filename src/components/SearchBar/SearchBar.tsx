@@ -7,9 +7,10 @@ import { RepoType } from '../../pages/Home/Home';
 type SearchBarProps = {
   setRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setSearched: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SearchBar = ({ setRepos, setIsLoading }: SearchBarProps) => {
+const SearchBar = ({ setRepos, setIsLoading, setSearched }: SearchBarProps) => {
   const [page, setPage] = useState(1);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -39,6 +40,7 @@ const SearchBar = ({ setRepos, setIsLoading }: SearchBarProps) => {
               };
             });
             setIsLoading(false);
+            setSearched(true);
             setRepos(result);
             setPage(page + 1);
           })

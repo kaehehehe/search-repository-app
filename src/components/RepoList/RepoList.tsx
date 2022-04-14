@@ -36,6 +36,8 @@ const RepoList = ({
         setShowModal(true);
         setText('이미 저장되어 있습니다. 😥');
       } else {
+        setShowModal(true);
+        setText('정상적으로 저장되었습니다. 😄');
         setSavedRepos([...savedRepos, targetRepo]);
       }
     } else {

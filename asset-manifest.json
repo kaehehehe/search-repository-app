@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/search-repository-app/static/js/main.c3f0cc39.js",
+    "static/media/octocat.png": "/search-repository-app/static/media/octocat.95e8ba92729cdeb15ad9.png",
+    "index.html": "/search-repository-app/index.html",
+    "main.c3f0cc39.js.map": "/search-repository-app/static/js/main.c3f0cc39.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c3f0cc39.js"
+  ]
+}

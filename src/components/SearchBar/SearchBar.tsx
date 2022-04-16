@@ -60,7 +60,6 @@ const SearchBar = ({
   };
   return (
     <S.SearchBar>
-      <span>🔍 Github 리포지토리를 검색할 수 있습니다.</span>
       <input
         type="search"
         ref={inputRef}

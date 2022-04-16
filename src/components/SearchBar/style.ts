@@ -7,20 +7,15 @@ export const SearchBar = styled.div`
   align-items: center;
   margin: 50px auto;
 
-  span {
-    font-size: 1.8rem;
-    color: #acbac7;
-    margin-bottom: 8px;
-  }
-
   input {
-    width: 400px;
-    height: 33px;
+    width: 450px;
+    height: 50px;
     outline: none;
-    font-size: 14px;
+    font-size: 16px;
     border: 1px solid #444c56;
     border-radius: 5px;
-    padding-left: 7px;
+    border-radius: 30px;
+    padding-left: 15px;
     color: #acbac7;
     background-color: #2d333b;
 

@@ -65,7 +65,6 @@ const RepoList = ({
   const callback = useCallback(
     // @ts-ignore
     async ([entry]) => {
-      console.log(entry);
       if (entry.isIntersecting) {
         fetchRepo(keyword)
           .then((res) => {

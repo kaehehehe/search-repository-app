@@ -1,4 +1,3 @@
-import React from 'react';
 import OctocatImage from '../../assets/octocat.png';
 import * as S from './style';
 

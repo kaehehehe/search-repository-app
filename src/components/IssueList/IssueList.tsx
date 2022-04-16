@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as S from './style';
 import { IssueType } from '../../pages/Issue/Issue';
 import { formatDate } from '../../utils/formatDate';

@@ -13,6 +13,9 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <header>
+        <h1>Search Github Repository</h1>
+      </header>
       <Router>
         <Routes>
           <Route

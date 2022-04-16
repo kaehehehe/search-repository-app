@@ -21,4 +21,11 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  h1 {
+    font-size: 48px;
+    color: #acbac7;
+    text-align: center;
+    margin-top: 45px;
+  }
 `;

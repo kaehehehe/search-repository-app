@@ -14,9 +14,9 @@ export const Message = styled.li`
 `;
 
 export const ListItem = styled.li`
-  width: 500px;
+  width: 70%;
   font-size: 1.8rem;
-  padding: 20px 0;
+  padding: 30px 0;
   transition: all 300ms linear;
   border-bottom: 1px solid #363e47;
   cursor: pointer;
@@ -27,7 +27,7 @@ export const ListItem = styled.li`
 `;
 
 export const Title = styled.h4`
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: #539bf5;
   margin-bottom: 8px;
 `;
@@ -39,8 +39,12 @@ export const Description = styled.p`
 `;
 
 export const IssuesCount = styled.div`
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #acbac7;
+  margin-bottom: 5px;
 `;
 
-export const UpdatedAt = styled(IssuesCount)``;
+export const UpdatedAt = styled(IssuesCount)`
+  margin-bottom: 0;
+  font-size: 1.4rem;
+`;

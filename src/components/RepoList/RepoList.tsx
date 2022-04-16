@@ -114,7 +114,7 @@ const RepoList = ({
               <S.Description>{repo.description}</S.Description>
               <S.IssuesCount>issue 개수 : {repo.open_issues}</S.IssuesCount>
               <S.UpdatedAt>
-                마지막에 업데이트된 날짜 : {formatDate(repo.updated_at)}
+                업데이트 일시 : {formatDate(repo.updated_at)}
               </S.UpdatedAt>
             </S.ListItem>
           ))

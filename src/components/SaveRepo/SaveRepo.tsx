@@ -17,10 +17,9 @@ const SaveRepo = ({ savedRepos, setSavedRepos }: SaveRepoProps) => {
   };
   return (
     <S.SaveRepo>
-      <h3>최대 4개까지 리포지토리를 저장할 수 있습니다</h3>
       <S.List>
         {savedRepos.length === 0 ? (
-          <li>저장된 리포지토리가 없습니다</li>
+          <S.Message>저장된 리포지토리는 없습니다</S.Message>
         ) : (
           savedRepos.map(({ id, full_name }) => (
             <S.ListItem key={id}>

@@ -3,20 +3,19 @@ import styled from 'styled-components';
 export const SaveRepo = styled.div`
   max-width: 1100px;
   border-radius: 3px;
-
-  h3 {
-    font-size: 1.8rem;
-    font-weight: normal;
-    text-align: center;
-    color: #acbac7;
-    margin-bottom: 15px;
-  }
+  margin-bottom: 30px;
 `;
 
 export const List = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 10px 10px;
+`;
+
+export const Message = styled.li`
+  color: #acbac7;
+  font-size: 1.6rem;
 `;
 
 export const ListItem = styled.li`
@@ -24,7 +23,10 @@ export const ListItem = styled.li`
   border: 1px solid #acbac7;
   border-radius: 10px;
   color: #539bf5;
-  margin: 0 10px 10px 0;
+  transition: all 250ms linear;
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -43,9 +45,8 @@ export const DeleteIcon = styled.svg`
   width: 15px;
   fill: #acbac7;
   cursor: pointer;
-  transition: all 250ms linear;
 
   &:hover {
-    transform: scale(0.95);
+    opacity: 0.7;
   }
 `;

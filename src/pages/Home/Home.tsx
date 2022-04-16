@@ -4,7 +4,6 @@ import * as S from './style';
 import SearchBar from '../../components/SearchBar';
 import SaveRepo from '../../components/SaveRepo';
 import RepoList from '../../components/RepoList';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 import Loading from '../../components/Loading';
 
 export type RepoType = {
@@ -15,9 +14,13 @@ export type RepoType = {
   updated_at: string;
 };
 
-const Home = () => {
+type HomeProps = {
+  savedRepos: RepoType[];
+  setSavedRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
+};
+
+const Home = ({ savedRepos, setSavedRepos }: HomeProps) => {
   const [repos, setRepos] = useState<RepoType[]>([]);
-  const [savedRepos, setSavedRepos] = useLocalStorage('savedRepos', []);
   const [isLoading, setIsLoading] = useState(false);
   const [searched, setSearched] = useState(false);
   const [page, setPage] = useState(1);

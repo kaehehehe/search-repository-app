@@ -13,8 +13,8 @@ export const ArrowUp = styled.div<ArrowUpProps>`
   border-radius: 50%;
   background-color: #acbac7;
   position: fixed;
-  bottom: 50px;
-  right: 30px;
+  bottom: 90px;
+  right: 50px;
   cursor: pointer;
 
   &:hover svg {

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { GlobalStyle } from './GlobalStyle';
 import Home from './pages/Home';
 import Issue from './pages/Issue';
+import ScrollToTopBtn from './components/ScrollToTopBtn';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 const App = () => {
   const [savedRepos, setSavedRepos] = useLocalStorage('savedRepos', []);
+
   return (
     <>
       <GlobalStyle />
@@ -25,6 +27,7 @@ const App = () => {
           />
         </Routes>
       </Router>
+      <ScrollToTopBtn />
     </>
   );
 };

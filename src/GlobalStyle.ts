@@ -22,10 +22,18 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
-  h1 {
-    font-size: 48px;
-    color: #acbac7;
+  header {
     text-align: center;
     margin-top: 45px;
+    color: #acbac7;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 18px;
   }
 `;

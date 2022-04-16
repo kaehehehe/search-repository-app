@@ -6,7 +6,7 @@ export const Issue = styled.div`
 `;
 
 export const HomeIcon = styled.svg`
-  position: fixed;
+  position: absolute;
   top: 10px;
   left: 10px;
   width: 30px;

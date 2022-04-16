@@ -6,6 +6,9 @@ export const Issue = styled.div`
 `;
 
 export const HomeIcon = styled.svg`
+  position: fixed;
+  top: 10px;
+  left: 10px;
   width: 30px;
   margin: 20px;
   fill: #acbac7;
@@ -16,10 +19,10 @@ export const HomeIcon = styled.svg`
   }
 `;
 
-export const IssueTitle = styled.h1`
+export const IssueTitle = styled.h3`
   text-align: center;
-  font-size: 45px;
-  margin: 10px 0 50px;
+  font-size: 35px;
+  margin: 50px 0;
   color: #acbac7;
 `;
 

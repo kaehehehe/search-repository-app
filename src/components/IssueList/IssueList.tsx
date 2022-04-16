@@ -24,7 +24,7 @@ const IssueList = ({ issues, repoName }: IssueListProps) => {
                 <img src={author_avatar} alt="이슈를 만든 사람의 사진" />
                 <span>{author}</span>
               </S.AuthorData>
-              <S.UpdatedAt>{formatDate(updated_at)}</S.UpdatedAt>
+              <S.UpdatedAt>업데이트 일시 : {formatDate(updated_at)}</S.UpdatedAt>
             </S.IssueCard>
           )
         )

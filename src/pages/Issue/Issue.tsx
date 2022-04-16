@@ -101,7 +101,7 @@ const Issue = ({ savedRepos }: IssueProps) => {
       </S.HomeIcon>
       <S.IssueTitle>{`${owner}/${name}`} ISSUES</S.IssueTitle>
       {isLoading ? <Loading /> : <IssueList issues={issues} repoName={name} />}
-      {!isLoading && (
+      {!isLoading && issues.length !== 0 && (
         <S.Paginate>
           <ReactPaginate
             forcePage={currentPage}

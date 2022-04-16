@@ -21,7 +21,7 @@ const App = () => {
           또한 저장된 repository에서는 issue를 확인할 수 있습니다.
         </p>
       </header>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route
             path="/"

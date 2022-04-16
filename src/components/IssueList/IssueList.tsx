@@ -11,7 +11,7 @@ const IssueList = ({ issues, repoName }: IssueListProps) => {
   return (
     <S.IssueList>
       {issues.length === 0 ? (
-        <S.NoIssue>issue가 없습니다</S.NoIssue>
+        <S.NoIssue>issue가 없습니다.</S.NoIssue>
       ) : (
         issues.map(
           ({ id, title, updated_at, html_url, author, author_avatar }) => (

@@ -19,7 +19,7 @@ const SaveRepo = ({ savedRepos, setSavedRepos }: SaveRepoProps) => {
     <S.SaveRepo>
       <S.List>
         {savedRepos.length === 0 ? (
-          <S.Message>저장된 리포지토리는 없습니다</S.Message>
+          <S.Message>저장된 repository는 없습니다.</S.Message>
         ) : (
           savedRepos.map(({ id, full_name }) => (
             <S.ListItem key={id}>

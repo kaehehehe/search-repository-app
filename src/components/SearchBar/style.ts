@@ -13,7 +13,6 @@ export const SearchBar = styled.div`
     outline: none;
     font-size: 16px;
     border: 1px solid #444c56;
-    border-radius: 5px;
     border-radius: 30px;
     padding-left: 15px;
     color: #acbac7;

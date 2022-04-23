@@ -30,14 +30,8 @@ const Issue = ({ savedRepos }: IssueProps) => {
   const navigate = useNavigate();
 
   const fetchIssues = async (page: number = 1) => {
-    return await axios.get(
-      `https://api.github.com/repos/${owner}/${name}/issues?&page=${page}`
-    );
-  };
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetchIssues()
+    return await axios
+      .get(`https://api.github.com/repos/${owner}/${name}/issues?&page=${page}`)
       .then((res) => {
         const issues = res.data;
         const result = issues.map((issue: IssueType) => {
@@ -56,6 +50,11 @@ const Issue = ({ savedRepos }: IssueProps) => {
         setIsLoading(false);
       })
       .catch((res) => console.error(res));
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchIssues();
   }, []);
 
   const calculatePageCount = () => {
@@ -69,25 +68,7 @@ const Issue = ({ savedRepos }: IssueProps) => {
     const page = clickedPage.selected;
     setCurrentPage(page);
     setIsLoading(true);
-    fetchIssues(page + 1)
-      .then((res) => {
-        const issues = res.data;
-        const result = issues.map((issue: IssueType) => {
-          // @ts-ignore
-          const { login, avatar_url } = issue.user;
-          return {
-            id: issue.id,
-            updated_at: issue.updated_at,
-            title: issue.title,
-            html_url: issue.html_url,
-            author: login,
-            author_avatar: avatar_url,
-          };
-        });
-        setIssues(result);
-        setIsLoading(false);
-      })
-      .catch((res) => console.error(res));
+    fetchIssues(page + 1);
   };
 
   return (

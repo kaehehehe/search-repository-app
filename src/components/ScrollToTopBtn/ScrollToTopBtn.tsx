@@ -3,21 +3,27 @@ import { useEffect, useState } from 'react';
 import * as S from './style';
 
 const ScrollToTopBtn = () => {
-  const [windowHeight, setWindowHeight] = useState('none');
+  const [display, setDisplay] = useState('none');
+
+  const handleScroll = () => {
+    let timer;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (window.pageYOffset > 688) {
+        setDisplay('flex');
+      } else {
+        setDisplay('none');
+      }
+    }, 1000);
+  };
 
   useEffect(() => {
-    document.addEventListener('scroll', () => {
-      if (window.pageYOffset > 688) {
-        setWindowHeight('flex');
-      } else {
-        setWindowHeight('none');
-      }
-    });
-  }, [windowHeight]);
+    window.addEventListener('scroll', handleScroll);
+  });
 
   return (
     <S.ArrowUp
-      display={windowHeight}
+      display={display}
       onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">

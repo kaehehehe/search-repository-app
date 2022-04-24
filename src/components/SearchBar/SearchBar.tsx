@@ -25,9 +25,27 @@ const SearchBar = React.memo(
     const inputRef = useRef<HTMLInputElement>(null);
 
     const fetchRepo = async (keyword: string) => {
-      return await axios.get(
-        `https://api.github.com/search/repositories?q=${keyword}&page=${page}`
-      );
+      return await axios
+        .get(
+          `https://api.github.com/search/repositories?q=${keyword}&page=${page}`
+        )
+        .then((res) => {
+          const data = res.data.items;
+          const result = data.map((repo: RepoType) => {
+            return {
+              id: repo.id,
+              full_name: repo.full_name,
+              open_issues: repo.open_issues,
+              description: repo.description,
+              updated_at: repo.updated_at,
+            };
+          });
+          setIsLoading(false);
+          setSearched(true);
+          setRepos(result);
+          setPage(page + 1);
+        })
+        .catch((res) => console.error(res));
     };
 
     const searchRepo = (e: React.KeyboardEvent) => {
@@ -38,24 +56,7 @@ const SearchBar = React.memo(
         } else {
           setIsLoading(true);
           setKeyword(keyword);
-          fetchRepo(keyword)
-            .then((res) => {
-              const data = res.data.items;
-              const result = data.map((repo: RepoType) => {
-                return {
-                  id: repo.id,
-                  full_name: repo.full_name,
-                  open_issues: repo.open_issues,
-                  description: repo.description,
-                  updated_at: repo.updated_at,
-                };
-              });
-              setIsLoading(false);
-              setSearched(true);
-              setRepos(result);
-              setPage(page + 1);
-            })
-            .catch((res) => console.error(res));
+          fetchRepo(keyword);
         }
       }
     };

@@ -32,10 +32,29 @@ const RepoList = ({
   const [text, setText] = useState('');
   const targetRef = useRef<HTMLLIElement>(null);
 
-  const fetchRepo = async (keyword: string) => {
-    return await axios.get(
-      `https://api.github.com/search/repositories?q=${keyword}&page=${page}`
-    );
+  const fetchRepo = async (keyword: string, page: number = 1) => {
+    return await axios
+      .get(
+        `https://api.github.com/search/repositories?q=${keyword}&page=${page}`
+      )
+      .then((res) => {
+        const data = res.data.items;
+        const result = data.map((repo: RepoType) => {
+          return {
+            id: repo.id,
+            full_name: repo.full_name,
+            open_issues: repo.open_issues,
+            description: repo.description,
+            updated_at: repo.updated_at,
+          };
+        });
+        setRepos([...repos, ...result]);
+        setPage(page + 1);
+      })
+      .catch((res) => {
+        console.error(res);
+        return;
+      });
   };
 
   const existsRepo = (targetRepo: RepoType) => {
@@ -64,27 +83,10 @@ const RepoList = ({
 
   const callback = useCallback(
     // @ts-ignore
-    async ([entry]) => {
+    ([entry]) => {
       if (entry.isIntersecting) {
-        fetchRepo(keyword)
-          .then((res) => {
-            const data = res.data.items;
-            const result = data.map((repo: RepoType) => {
-              return {
-                id: repo.id,
-                full_name: repo.full_name,
-                open_issues: repo.open_issues,
-                description: repo.description,
-                updated_at: repo.updated_at,
-              };
-            });
-            setRepos([...new Set([...repos, ...result])]);
-            setPage(page + 1);
-          })
-          .catch((res) => {
-            console.error(res);
-            return;
-          });
+        fetchRepo(keyword, page + 1);
+        setPage(page + 1);
       }
     },
     [targetRef.current]

@@ -8,7 +8,7 @@ type SaveRepoProps = {
   savedRepos: RepoType[];
   setSavedRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
 };
-const SaveRepo = ({ savedRepos, setSavedRepos }: SaveRepoProps) => {
+const SaveRepo = React.memo(({ savedRepos, setSavedRepos }: SaveRepoProps) => {
   const navigate = useNavigate();
 
   const handleDeleteBtn = (id: number) => {
@@ -41,6 +41,6 @@ const SaveRepo = ({ savedRepos, setSavedRepos }: SaveRepoProps) => {
       </S.List>
     </S.SaveRepo>
   );
-};
+});
 
 export default SaveRepo;

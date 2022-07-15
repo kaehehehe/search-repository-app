@@ -3,12 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { FaTrashAlt as IcDelete } from 'react-icons/fa';
 
 import * as S from './style';
-import { RepoType } from '../../pages/Home/Home';
+import { SaveRepoProps } from '../../types/saveRepo';
 
-type SaveRepoProps = {
-  savedRepos: RepoType[];
-  setSavedRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
-};
 const SaveRepo = React.memo(({ savedRepos, setSavedRepos }: SaveRepoProps) => {
   const navigate = useNavigate();
 

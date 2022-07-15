@@ -2,16 +2,8 @@ import React, { useRef } from 'react';
 import axios from 'axios';
 
 import * as S from './style';
-import { RepoType } from '../../pages/Home/Home';
-
-type SearchBarProps = {
-  setKeyword: React.Dispatch<React.SetStateAction<string>>;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  setRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  setSearched: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import { SearchBarProps } from '../../types/searchBar';
+import { RepoType } from '../../types/common';
 
 const SearchBar = React.memo(
   ({

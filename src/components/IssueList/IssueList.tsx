@@ -1,11 +1,6 @@
 import * as S from './style';
-import { IssueType } from '../../pages/Issue/Issue';
 import { formatDate } from '../../utils/formatDate';
-
-type IssueListProps = {
-  issues: IssueType[];
-  repoName: string | undefined;
-};
+import { IssueListProps } from '../../types/issueList';
 
 const IssueList = ({ issues, repoName }: IssueListProps) => {
   return (
@@ -24,7 +19,9 @@ const IssueList = ({ issues, repoName }: IssueListProps) => {
                 <img src={author_avatar} alt="이슈를 만든 사람의 사진" />
                 <span>{author}</span>
               </S.AuthorData>
-              <S.UpdatedAt>업데이트 일시 : {formatDate(updated_at)}</S.UpdatedAt>
+              <S.UpdatedAt>
+                업데이트 일시 : {formatDate(updated_at)}
+              </S.UpdatedAt>
             </S.IssueCard>
           )
         )

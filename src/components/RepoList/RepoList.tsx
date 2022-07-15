@@ -2,21 +2,11 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 import * as S from './style';
-import { RepoType } from '../../pages/Home/Home';
 import { formatDate } from '../../utils/formatDate';
 import ModalPortal from '../Modal/ModalPortal';
 import Modal from '../Modal';
-
-type RepoListProps = {
-  keyword: string;
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  repos: RepoType[];
-  setRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
-  savedRepos: RepoType[];
-  setSavedRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
-  searched: boolean;
-};
+import { RepoType } from '../../types/common';
+import { RepoListProps } from '../../types/repoList';
 
 const RepoList = ({
   keyword,

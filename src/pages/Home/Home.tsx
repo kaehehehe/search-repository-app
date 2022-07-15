@@ -5,19 +5,8 @@ import SearchBar from '../../components/SearchBar';
 import SaveRepo from '../../components/SaveRepo';
 import RepoList from '../../components/RepoList';
 import Loading from '../../components/Loading';
-
-export type RepoType = {
-  id: number;
-  full_name: string;
-  open_issues: number;
-  description: string;
-  updated_at: string;
-};
-
-type HomeProps = {
-  savedRepos: RepoType[];
-  setSavedRepos: React.Dispatch<React.SetStateAction<RepoType[]>>;
-};
+import { HomeProps } from '../../types/home';
+import { RepoType } from '../../types/common';
 
 const Home = ({ savedRepos, setSavedRepos }: HomeProps) => {
   const [repos, setRepos] = useState<RepoType[]>([]);

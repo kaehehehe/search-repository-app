@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { RepoType } from '../pages/Home/Home';
+import { RepoType } from '../types/common';
 
 export const useLocalStorage = (key: string, initialValue: RepoType[]) => {
   const getLocalStorage = () => {

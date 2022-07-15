@@ -8,20 +8,7 @@ import { AiFillHome as IcHome } from 'react-icons/ai';
 import * as S from './style';
 import IssueList from '../../components/IssueList';
 import Loading from '../../components/Loading';
-import { RepoType } from '../Home/Home';
-
-export type IssueType = {
-  id: number;
-  updated_at: string;
-  title: string;
-  html_url: string;
-  author: string;
-  author_avatar: string;
-};
-
-type IssueProps = {
-  savedRepos: RepoType[];
-};
+import { IssueProps, IssueType } from '../../types/issue';
 
 const Issue = ({ savedRepos }: IssueProps) => {
   const [issues, setIssues] = useState<IssueType[]>([]);

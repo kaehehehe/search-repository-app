@@ -41,10 +41,13 @@ export const RepoName = styled.h4`
   cursor: pointer;
 `;
 
-export const DeleteIcon = styled.svg`
-  width: 15px;
-  fill: #acbac7;
-  cursor: pointer;
+export const IcDelete = styled.div`
+  .delete-icon {
+    width: auto;
+    height: 20px;
+    fill: #acbac7;
+    cursor: pointer;
+  }
 
   &:hover {
     opacity: 0.7;

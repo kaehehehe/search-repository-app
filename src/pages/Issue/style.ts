@@ -5,17 +5,20 @@ export const Issue = styled.div`
   margin: 0 auto;
 `;
 
-export const HomeIcon = styled.svg`
+export const IcHouse = styled.div`
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 30px;
-  margin: 20px;
-  fill: #acbac7;
+  top: 20px;
+  left: 30px;
   cursor: pointer;
 
   &:hover {
     opacity: 0.7;
+  }
+
+  .home-icon {
+    width: auto;
+    height: 40px;
+    fill: #acbac7;
   }
 `;
 

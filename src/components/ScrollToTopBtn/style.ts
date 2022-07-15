@@ -17,12 +17,13 @@ export const ArrowUp = styled.div<ArrowUpProps>`
   right: 50px;
   cursor: pointer;
 
-  &:hover svg {
-    opacity: 0.7;
+  .arrow-up-icon {
+    width: auto;
+    height: 30px;
+    color: #22272d;
   }
 
-  svg {
-    fill: #22272d;
-    width: 25px;
+  &:hover .arrow-up-icon {
+    opacity: 0.7;
   }
 `;

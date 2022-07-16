@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import * as S from './style';
 import { formatDate } from '../../utils/formatDate';
@@ -7,13 +6,12 @@ import ModalPortal from '../Modal/ModalPortal';
 import Modal from '../Modal';
 import { RepoType } from '../../types/common';
 import { RepoListProps } from '../../types/repoList';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { fetchRepos } from '../../features/search/searchSlice';
 
 const RepoList = ({
   keyword,
-  page,
-  setPage,
-  repos,
-  setRepos,
   savedRepos,
   setSavedRepos,
   searched,
@@ -21,31 +19,9 @@ const RepoList = ({
   const [showModal, setShowModal] = useState(false);
   const [text, setText] = useState('');
   const targetRef = useRef<HTMLLIElement>(null);
-
-  const fetchRepo = async (keyword: string, page: number = 1) => {
-    return await axios
-      .get(
-        `https://api.github.com/search/repositories?q=${keyword}&page=${page}`
-      )
-      .then((res) => {
-        const data = res.data.items;
-        const result = data.map((repo: RepoType) => {
-          return {
-            id: repo.id,
-            full_name: repo.full_name,
-            open_issues: repo.open_issues,
-            description: repo.description,
-            updated_at: repo.updated_at,
-          };
-        });
-        setRepos([...repos, ...result]);
-        setPage(page + 1);
-      })
-      .catch((res) => {
-        console.error(res);
-        return;
-      });
-  };
+  const dispatch = useAppDispatch();
+  const page = useAppSelector((state) => state.search.page);
+  const repos = useAppSelector((state) => state.search.repos);
 
   const existsRepo = (targetRepo: RepoType) => {
     return savedRepos.find((repo) => repo.id === targetRepo.id);
@@ -75,8 +51,7 @@ const RepoList = ({
     // @ts-ignore
     ([entry]) => {
       if (entry.isIntersecting) {
-        fetchRepo(keyword, page + 1);
-        setPage(page + 1);
+        dispatch(fetchRepos({ keyword, page: page }));
       }
     },
     [targetRef.current]
@@ -96,20 +71,23 @@ const RepoList = ({
         {searched && repos.length === 0 ? (
           <S.Message>검색 결과가 없습니다.</S.Message>
         ) : (
-          repos.map((repo, index) => (
-            <S.ListItem
-              key={repo.id}
-              onClick={() => handleSaveRepo(repo)}
-              ref={index === repos.length - 1 ? targetRef : null}
-            >
-              <S.Title>{repo.full_name}</S.Title>
-              <S.Description>{repo.description}</S.Description>
-              <S.IssuesCount>issue 개수 : {repo.open_issues}</S.IssuesCount>
-              <S.UpdatedAt>
-                업데이트 일시 : {formatDate(repo.updated_at)}
-              </S.UpdatedAt>
-            </S.ListItem>
-          ))
+          repos.map((repo, index) => {
+            const { id, title, description, issueCnt, updatedAt } = repo;
+            return (
+              <S.ListItem
+                key={id}
+                onClick={() => handleSaveRepo(repo)}
+                ref={index === repos.length - 4 ? targetRef : null}
+              >
+                <S.Title>{title}</S.Title>
+                <S.Description>{description}</S.Description>
+                <S.IssuesCount>issue 개수: {issueCnt}</S.IssuesCount>
+                <S.UpdatedAt>
+                  업데이트 일시: {formatDate(updatedAt)}
+                </S.UpdatedAt>
+              </S.ListItem>
+            );
+          })
         )}
       </S.RepoList>
       <ModalPortal>

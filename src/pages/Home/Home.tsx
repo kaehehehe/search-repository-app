@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import * as S from './style';
 import SearchBar from '../../components/SearchBar';
@@ -6,35 +6,22 @@ import SaveRepo from '../../components/SaveRepo';
 import RepoList from '../../components/RepoList';
 import Loading from '../../components/Loading';
 import { HomeProps } from '../../types/home';
-import { RepoType } from '../../types/common';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 const Home = ({ savedRepos, setSavedRepos }: HomeProps) => {
-  const [repos, setRepos] = useState<RepoType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [searched, setSearched] = useState(false);
-  const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState('');
+  const isLoading = useAppSelector((state) => state.search.isLoading);
 
   return (
     <S.Home>
-      <SearchBar
-        setKeyword={setKeyword}
-        page={page}
-        setPage={setPage}
-        setRepos={setRepos}
-        setIsLoading={setIsLoading}
-        setSearched={setSearched}
-      />
+      <SearchBar setKeyword={setKeyword} setSearched={setSearched} />
       <SaveRepo savedRepos={savedRepos} setSavedRepos={setSavedRepos} />
       {isLoading ? (
         <Loading />
       ) : (
         <RepoList
           keyword={keyword}
-          page={page}
-          setPage={setPage}
-          repos={repos}
-          setRepos={setRepos}
           savedRepos={savedRepos}
           setSavedRepos={setSavedRepos}
           searched={searched}

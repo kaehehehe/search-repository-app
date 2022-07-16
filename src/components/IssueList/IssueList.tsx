@@ -9,19 +9,17 @@ const IssueList = ({ issues, repoName }: IssueListProps) => {
         <S.NoIssue>issue가 없습니다.</S.NoIssue>
       ) : (
         issues.map(
-          ({ id, title, updated_at, html_url, author, author_avatar }) => (
-            <S.IssueCard key={id} href={html_url} target="_blank">
+          ({ id, updatedAt, title, issuePageURL, author, avatarImgSrc }) => (
+            <S.IssueCard key={id} href={issuePageURL} target="_blank">
               <S.CardTitleAndRepoName>
                 <span>{repoName}</span>
                 <h3>{title}</h3>
               </S.CardTitleAndRepoName>
               <S.AuthorData>
-                <img src={author_avatar} alt="이슈를 만든 사람의 사진" />
+                <img src={avatarImgSrc} alt="이슈를 만든 사람의 사진" />
                 <span>{author}</span>
               </S.AuthorData>
-              <S.UpdatedAt>
-                업데이트 일시 : {formatDate(updated_at)}
-              </S.UpdatedAt>
+              <S.UpdatedAt>업데이트 일시 : {formatDate(updatedAt)}</S.UpdatedAt>
             </S.IssueCard>
           )
         )

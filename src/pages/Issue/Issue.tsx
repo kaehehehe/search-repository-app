@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { AiFillHome as IcHome } from 'react-icons/ai';
@@ -8,55 +7,34 @@ import { AiFillHome as IcHome } from 'react-icons/ai';
 import * as S from './style';
 import IssueList from '../../components/IssueList';
 import Loading from '../../components/Loading';
-import { IssueProps, IssueType } from '../../types/issue';
+import { IssueProps } from '../../types/issue';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { fetchIssues } from '../../features/issue/issueSlice';
 
 const Issue = ({ savedRepos }: IssueProps) => {
-  const [issues, setIssues] = useState<IssueType[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const { owner, name } = useParams();
+  const { owner, name } = useParams<{ owner: string | undefined; name: string | undefined; }>();
   const navigate = useNavigate();
-
-  const fetchIssues = async (page: number = 1) => {
-    return await axios
-      .get(`https://api.github.com/repos/${owner}/${name}/issues?&page=${page}`)
-      .then((res) => {
-        const issues = res.data;
-        const result = issues.map((issue: IssueType) => {
-          // @ts-ignore
-          const { login, avatar_url } = issue.user;
-          return {
-            id: issue.id,
-            updated_at: issue.updated_at,
-            title: issue.title,
-            html_url: issue.html_url,
-            author: login,
-            author_avatar: avatar_url,
-          };
-        });
-        setIssues(result);
-        setIsLoading(false);
-      })
-      .catch((res) => console.error(res));
-  };
+  const dispatch = useAppDispatch();
+  const isLoading = useAppSelector((state) => state.issue.isLoading);
+  const issues = useAppSelector((state) => state.issue.issues);
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchIssues();
+    dispatch(fetchIssues({ owner, name, page: 1 }));
   }, []);
 
   const calculatePageCount = () => {
     const targetRepo = savedRepos.filter(
-      (repo) => repo.full_name === `${owner}/${name}`
+      (repo) => repo.title === `${owner}/${name}`
     );
-    return Math.ceil(targetRepo[0].open_issues / 30);
+    return Math.ceil(targetRepo[0].issueCnt / 30);
   };
 
   const handlePaginate = (clickedPage: { selected: number }) => {
     const page = clickedPage.selected;
     setCurrentPage(page);
-    setIsLoading(true);
-    fetchIssues(page + 1);
+    dispatch(fetchIssues({ owner, name, page: page + 1 }));
   };
 
   return (

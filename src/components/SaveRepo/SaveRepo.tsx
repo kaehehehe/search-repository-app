@@ -19,11 +19,11 @@ const SaveRepo = React.memo(({ savedRepos, setSavedRepos }: SaveRepoProps) => {
         {savedRepos.length === 0 ? (
           <S.Message>저장된 repository는 없습니다.</S.Message>
         ) : (
-          savedRepos.map(({ id, full_name }) => (
+          savedRepos.map(({ id, title }) => (
             <S.ListItem key={id}>
               <S.Wrapper>
-                <S.RepoName onClick={() => navigate(`/issue/${full_name}`)}>
-                  {full_name}
+                <S.RepoName onClick={() => navigate(`/issue/${title}`)}>
+                  {title}
                 </S.RepoName>
                 <S.IcDelete onClick={() => handleDeleteBtn(id)}>
                   <IcDelete className="delete-icon" />

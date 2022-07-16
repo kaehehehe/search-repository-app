@@ -26,7 +26,6 @@ const searchSlice = createSlice({
   name: 'search',
   initialState: {
     isLoading: false,
-    keyword: '' as string,
     page: 1,
     repos: [] as RepoType[],
   },
@@ -46,7 +45,7 @@ const searchSlice = createSlice({
           updatedAt: item.updated_at,
         };
       });
-      state.repos = [...state.repos, ...data];
+      state.repos = [...data];
       state.page += 1;
     });
     builder.addCase(fetchRepos.fulfilled, (state, { payload }) => {
